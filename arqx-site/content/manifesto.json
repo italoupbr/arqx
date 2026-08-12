@@ -1,0 +1,21 @@
+{
+  "title": "Manifesto ARQX · a junção da arquitetura e do dinheiro",
+  "description": "O manifesto da ARQX: a faculdade ensina a projetar, o mercado ensina tudo, menos a lucrar. O problema não é falta de talento. É falta de estrutura.",
+  "h1": "o mercado ensina tudo, menos a lucrar.",
+  "quote": {
+    "texto": "o arquiteto brilhante que quebra é o retrato de um mercado que ensina tudo, menos a lucrar.",
+    "cite": "Lucas Galy"
+  },
+  "paragrafos": [
+    "A faculdade ensina a projetar. Ensina a calcular carga estrutural, a desenhar planta, a defender conceito em banca. Não ensina a precificar um projeto sem medo de perder o cliente. Não ensina a construir um funil de captação. Não ensina a ler um fluxo de caixa nem a negociar um contrato que proteja o escritório.",
+    "O resultado é um mercado cheio de arquitetos tecnicamente brilhantes que vivem reféns da próxima indicação. Um mês bom seguido de dois meses de silêncio. Uma agenda cheia de trabalho e uma conta bancária que não reflete isso. Um portfólio impecável e nenhuma previsibilidade sobre o próximo projeto.",
+    "A ARQX parte de uma constatação simples: o problema nunca foi o talento. É a ausência de estrutura comercial por trás dele. Por isso não vendemos curso, não vendemos mentoria de conteúdo genérico, não vendemos mais uma agência que executa e some quando o contrato acaba. Entregamos estrutura, por licenciamento de marca e método, com curadoria direta de quem já gerou resultado real antes de estruturar isso para outros.",
+    "O problema não é falta de talento. É falta de estrutura. E a resposta a esse problema é uma categoria nova: o crescimento estruturado, entregue pela primeira rede de escritórios de arquitetura do Brasil.",
+    "Arquitetura lucrativa não é uma contradição. É o que acontece quando o talento técnico finalmente tem, por trás dele, um sistema comercial à altura."
+  ],
+  "fechoCta": {
+    "titulo": "Conheça o sistema por trás do manifesto",
+    "label": "Ver os Quatro Pilares",
+    "href": "/metodo-x"
+  }
+}

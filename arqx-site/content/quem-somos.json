@@ -1,0 +1,41 @@
+{
+  "title": "Quem somos · o time por trás da ARQX",
+  "description": "A ARQX nasceu após a geração de mais de R$10 milhões em projetos fechados para arquitetos. Conheça a origem, a missão e o time por trás da primeira rede de escritórios de arquitetura do Brasil.",
+  "h1": "quem somos.",
+  "sub": "A ARQX existe para resolver um problema específico: arquitetos com talento técnico comprovado e nenhuma estrutura comercial por trás dele.",
+  "origem": [
+    "Nascemos após a geração de mais de R$10 milhões em projetos fechados para arquitetos no Brasil e no exterior. Percebemos que o problema da maioria dos escritórios não era falta de talento: era falta de estrutura.",
+    "Hoje a ARQX opera como rede de escritórios associados à marca, entregando a arquitetos a implementação completa do método, o acompanhamento contínuo de equipe especializada e a curadoria direta do fundador, para transformar talento técnico em negócio lucrativo."
+  ],
+  "blocos": {
+    "confirm": "CONFIRMAR blocos Estrutura x Crescimento com o texto do deck",
+    "itens": [
+      { "titulo": "estrutura para crescer.", "texto": "Posicionamento, captação, gestão e escala: o negócio por trás do escritório, estruturado pelo Método X™." },
+      { "titulo": "liberdade para criar.", "texto": "O associado mantém autonomia total sobre a produção dos projetos e a escolha do seu público. A ARQX não entra na operação." }
+    ]
+  },
+  "missao": "Elevar o padrão empresarial da arquitetura através da construção de escritórios mais fortes, lucrativos e valorizados.",
+  "time": {
+    "confirmFotos": "CONFIRMAR fotos do time · aguardando envio",
+    "confirmBios": "CONFIRMAR bios individuais com o Lucas",
+    "membros": [
+      { "nome": "Lucas Galy", "cargo": "Founder" },
+      { "nome": "Gabriela Melo", "cargo": "Content Strategy" },
+      { "nome": "Laura Gomes", "cargo": "Customer Success" },
+      { "nome": "Matheus Ferreira", "cargo": "Gestor de Tráfego" }
+    ]
+  },
+  "numeros": [
+    { "value": "10MM", "prefix": "+R$", "label": "em projetos fechados para arquitetos" },
+    { "value": "179", "prefix": "+", "label": "escritórios acelerados", "confirm": "CONFIRMAR: 179 ou 169" },
+    { "value": "70", "prefix": "+", "suffix": "%", "label": "de aumento de margem de lucro em 12 meses" }
+  ],
+  "fundadorCard": {
+    "eyebrow": "Fundador",
+    "titulo": "lucas galy",
+    "texto": "A trajetória que deu origem ao método e à rede.",
+    "label": "Conhecer a trajetória completa →",
+    "href": "/lucas-galy"
+  },
+  "fechoCta": { "titulo": "Pronto para estruturar o seu escritório?", "label": "Quero ser um associado →", "href": "/associar" }
+}

@@ -1,0 +1,12 @@
+{
+  "title": "Contato",
+  "description": "Fale com a ARQX · a primeira rede de escritórios de arquitetura do Brasil.",
+  "h1": "fale com a arqx.",
+  "atalho": "Já sabe que quer se associar? Vá direto para a candidatura.",
+  "atalhoLink": { "label": "Ir para a candidatura →", "href": "/associar" },
+  "form": {
+    "botao": "Enviar mensagem →",
+    "sucesso": "Mensagem recebida. Retornamos em breve."
+  },
+  "confirmCanais": "CONFIRMAR canal comercial e se haverá contato@arqx.com.br"
+}

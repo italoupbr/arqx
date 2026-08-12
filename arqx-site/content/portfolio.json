@@ -1,0 +1,16 @@
+{
+  "title": "Portfólio da rede ARQX · projetos dos escritórios associados",
+  "description": "Projetos dos escritórios associados à rede ARQX: residencial, interiores, arquitetura e corporativo, sempre com crédito ao escritório autor.",
+  "h1": "projetos que também dão lucro.",
+  "sub": "Cada projeto da rede é assinado pelo escritório associado que o criou. A autoria é sempre do arquiteto.",
+  "confirm": "CONFIRMAR: aguardando projetos reais + consentimento de imagem do cliente final (Código de Ética CAU)",
+  "filtros": ["Todos", "Residencial", "Interiores", "Arquitetura", "Corporativo"],
+  "placeholders": [
+    { "categoria": "Residencial", "image": "/img/projects-grid.webp" },
+    { "categoria": "Interiores", "image": "/img/interior.webp" },
+    { "categoria": "Arquitetura", "image": "/img/projects-grid.webp" },
+    { "categoria": "Corporativo", "image": "/img/interior.webp" },
+    { "categoria": "Residencial", "image": "/img/interior.webp" },
+    { "categoria": "Interiores", "image": "/img/projects-grid.webp" }
+  ]
+}

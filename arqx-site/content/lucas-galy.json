@@ -1,0 +1,27 @@
+{
+  "title": "Lucas Galy · fundador da ARQX",
+  "description": "A trajetória de Lucas Galy: do estágio em escritório local à geração de mais de R$10 milhões em projetos para arquitetos e à fundação da ARQX, a primeira rede de escritórios de arquitetura do Brasil.",
+  "fotoConfirm": "CONFIRMAR foto oficial do retrato",
+  "h1": "lucas galy",
+  "cargo": "Arquiteto e fundador da ARQX",
+  "trajetoria": [
+    "Lucas Galy começou como estagiário em um escritório local. No caminho, montou um sistema de captação de clientes pelo digital e foi responsável por uma empresa que fechou mais de R$1 milhão em projetos pela internet.",
+    "Esteve à frente da geração de mais de R$10 milhões em projetos fechados online para arquitetos no Brasil e no exterior. Foi nesse processo que percebeu um padrão que se repetia em praticamente todo escritório que passava por perto: o problema não era a falta de talento técnico, era a ausência de estrutura comercial por trás do talento.",
+    "Foi esse padrão que deu origem aos quatro pilares do Método X™ e, em seguida, à ARQX, criada especificamente para transformar esse diagnóstico em um sistema replicável para outros escritórios, hoje operando como rede de escritórios associados à marca no Brasil, nos EUA e em Portugal."
+  ],
+  "bioConfirm": "CONFIRMAR bio final com o Lucas antes de publicar",
+  "quote": {
+    "texto": "o arquiteto brilhante que quebra é o retrato de um mercado que ensina tudo, menos a lucrar.",
+    "cite": "Lucas Galy"
+  },
+  "numeros": [
+    { "value": "10MM", "prefix": "+R$", "label": "em projetos fechados para arquitetos" },
+    { "value": "179", "prefix": "+", "label": "escritórios acelerados", "confirm": "CONFIRMAR: 179 ou 169" },
+    { "value": "70", "prefix": "+", "suffix": "%", "label": "de aumento de margem de lucro em 12 meses" }
+  ],
+  "credenciaisConfirm": "CONFIRMAR formação, registro CAU e menções de mídia autorizadas",
+  "ctas": [
+    { "label": "Conhecer o time completo", "href": "/quem-somos", "variant": "secondary" },
+    { "label": "Quero ser um associado →", "href": "/associar", "variant": "primary" }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.arqx-br.com.br" }],
+      "destination": "https://arqx-br.com.br/:path*",
+      "permanent": true
+    }
+  ]
+}

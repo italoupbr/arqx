@@ -1,0 +1,67 @@
+{
+  "title": "Método X™ · os 4 pilares do escritório de arquitetura que dá lucro",
+  "description": "Posicionamento, Máquina de Receita, Gestão e Escala: como o Método X™ da ARQX estrutura escritórios de arquitetura para crescer com previsibilidade.",
+  "h1": "O Método X™",
+  "intro": {
+    "statement": "O método que gerou mais de R$10 milhões em projetos para arquitetos.",
+    "paragrafo": "O Método X™ não é uma lista de dicas. É uma sequência: cada pilar prepara o terreno para o próximo, do posicionamento que faz o escritório ser a escolha óbvia até a escala que multiplica a máquina."
+  },
+  "pilares": [
+    {
+      "numero": "01",
+      "nome": "Posicionamento",
+      "descricao": "Branding e comunicação para o seu público ideal. Sem posicionamento você compete por preço; com posicionamento você vira a escolha óbvia.",
+      "inclui": ["Definição do público ideal (ICP)", "Branding e identidade de comunicação", "Assertividade de posicionamento"]
+    },
+    {
+      "numero": "02",
+      "nome": "Máquina de Receita",
+      "descricao": "Construção de funis de vendas para vender mais: do seguidor ao contrato, sem depender de indicação.",
+      "inclui": ["Funis de vendas", "Captação de clientes no digital", "Previsibilidade comercial"]
+    },
+    {
+      "numero": "03",
+      "nome": "Gestão",
+      "descricao": "Organização estratégica, financeira e jurídica do escritório, com métricas, dados e relatórios.",
+      "inclui": ["Organização estratégica, financeira e jurídica", "Métricas, dados e relatórios", "KPIs de acompanhamento"]
+    },
+    {
+      "numero": "04",
+      "nome": "Escala",
+      "descricao": "Pegamos a máquina e escalamos 2x, 3x, 5x.",
+      "inclui": ["Escala da operação comercial", "Crescimento com margem", "Rotina de acompanhamento"]
+    }
+  ],
+  "entregas": {
+    "eyebrow": "O que você recebe",
+    "cards": [
+      {
+        "titulo": "Pass",
+        "subtitulo": "Implementação",
+        "itens": ["Materiais de implementação", "Área de membros", "Agentes de IA"]
+      },
+      {
+        "titulo": "Acompanhamento",
+        "subtitulo": "Rotina",
+        "itens": ["Hotseats em grupo", "Calls individuais com o Lucas", "Acompanhamento diário no WhatsApp"]
+      }
+    ],
+    "squad": "Squad dedicado: arquiteto que domina o método, customer success, estrategista de conteúdo e gestor de tráfego. Elimina a necessidade de agência de marketing e gestor de tráfego externos."
+  },
+  "sucesso": {
+    "eyebrow": "Sucesso da metodologia",
+    "barras": [
+      { "label": "Comercial organizado", "valor": 95 },
+      { "label": "Assertividade de posicionamento", "valor": 90 },
+      { "label": "Previsibilidade comercial", "valor": 80 },
+      { "label": "Margem de lucro", "valor": 70 },
+      { "label": "Sucesso geral", "valor": 65 }
+    ]
+  },
+  "seguranca": {
+    "eyebrow": "Segurança financeira",
+    "titulo": "Você administra, nós visualizamos.",
+    "paragrafo": "O controle da associação é automatizado via Asaas. O dinheiro do escritório fica com o escritório."
+  },
+  "cta": { "label": "Quero ser um associado →", "href": "/associar" }
+}

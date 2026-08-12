@@ -1,0 +1,10 @@
+{
+  "name": "arqx",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix arqx-site run dev",
+    "build": "npm --prefix arqx-site run build",
+    "start": "npm --prefix arqx-site run start",
+    "check:terminologia": "npm --prefix arqx-site run check:terminologia"
+  }
+}

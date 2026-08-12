@@ -1,0 +1,62 @@
+{
+  "title": "Torne-se um associado ARQX | Rede de escritórios de arquitetura",
+  "description": "Candidate seu escritório à rede ARQX: estrutura comercial completa, acompanhamento do time e autonomia total sobre seus projetos. Preencha o formulário.",
+  "pretitulo": "a junção da arquitetura e do dinheiro.",
+  "h1": "seja um associado.",
+  "sub": "Vagas limitadas por praça. Preencha e nosso time retorna em até 48h.",
+  "subConfirm": "CONFIRMAR prazo real de retorno",
+  "recebe": {
+    "eyebrow": "O que o associado recebe",
+    "grupos": [
+      {
+        "titulo": "Pass · implementação",
+        "itens": ["Materiais de implementação", "Área de membros", "Agentes de IA"]
+      },
+      {
+        "titulo": "Acompanhamento · rotina",
+        "itens": ["Hotseats em grupo", "Calls individuais com o Lucas", "Acompanhamento diário no WhatsApp"]
+      },
+      {
+        "titulo": "Collab de marca",
+        "itens": ["Assinatura \"Método by ARQX\" na sua comunicação", "A rede divulga os seus projetos"]
+      }
+    ],
+    "autonomia": "Você mantém autonomia total sobre seus projetos e seu público. A ARQX não entra na operação: entra na estrutura."
+  },
+  "form": {
+    "confirmCampos": "CONFIRMAR lista final de campos com o Lucas",
+    "tempoAtuacao": ["Até 2 anos", "2–5 anos", "5–10 anos", "+10 anos"],
+    "faturamento": ["Até R$10 mil", "R$10–30 mil", "R$30–80 mil", "+R$80 mil"],
+    "botao": "Enviar candidatura →",
+    "sucesso": "Candidatura recebida. Nosso time entra em contato em até 48h.",
+    "lgpd": "Li e aceito a Política de Privacidade. Autorizo o uso dos meus dados para contato comercial."
+  },
+  "faq": [
+    {
+      "q": "A ARQX é uma franquia?",
+      "a": "Não. A ARQX é uma rede de escritórios associados à marca, por licenciamento de marca e método. Diferente de uma franquia, a ARQX não entra na operação do seu escritório: você mantém autonomia total sobre a produção dos projetos e a escolha do seu público."
+    },
+    {
+      "q": "Preciso ter escritório físico para me associar?",
+      "a": "Fale com nosso time pelo formulário: cada candidatura é avaliada individualmente.",
+      "confirm": "CONFIRMAR com Lucas"
+    },
+    {
+      "q": "Continuo assinando meus projetos?",
+      "a": "Sim. Os projetos são seus e a autoria é sua. A collab de marca adiciona \"Método by ARQX\" à sua comunicação e permite que a rede divulgue seus projetos como associado."
+    },
+    {
+      "q": "Quanto custa?",
+      "a": "O investimento é apresentado na conversa com o time, após a análise da candidatura. A remuneração da ARQX está diretamente ligada ao seu crescimento: nós só ganhamos se você ganhar."
+    },
+    {
+      "q": "A ARQX atende meu estado?",
+      "a": "A rede atua no Brasil, nos EUA e em Portugal. Preencha o formulário para confirmarmos a disponibilidade na sua praça."
+    },
+    {
+      "q": "Em quanto tempo vejo resultado?",
+      "a": "Depende do ponto de partida do escritório. Fale com nosso time para uma avaliação honesta do seu caso.",
+      "confirm": "CONFIRMAR com Lucas · sem promessa de prazo sem aval"
+    }
+  ]
+}

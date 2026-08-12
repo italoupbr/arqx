@@ -1,0 +1,78 @@
+{
+  "hero": {
+    "eyebrow": "A primeira rede de escritórios de arquitetura do Brasil",
+    "h1": "arquitetura lucrativa.",
+    "sub": "A ARQX transforma arquitetos em empresários de alta performance. Você projeta, cria e constrói. Nós estruturamos a máquina de crescimento por trás do negócio.",
+    "subConfirm": "headline/sub sujeitas a ajuste do Lucas",
+    "bgConfirm": "CONFIRMAR fotos reais de projetos",
+    "ctaPrimary": { "label": "Quero ser um associado →", "href": "/associar" },
+    "ctaSecondary": { "label": "Conhecer o Método", "href": "/metodo-x" },
+    "rotator": [
+      ["indicação", "previsibilidade"],
+      ["talento", "estrutura"],
+      ["receita instável", "crescimento estruturado"]
+    ]
+  },
+  "metricas": [
+    { "value": "10MM", "prefix": "+R$", "label": "em projetos fechados para arquitetos" },
+    { "value": "179", "prefix": "+", "label": "escritórios acelerados", "confirm": "CONFIRMAR: 179 ou 169" },
+    { "value": "70", "prefix": "+", "suffix": "%", "label": "de aumento de margem de lucro em 12 meses" },
+    { "value": "BR · EUA · PT", "label": "presença da rede" }
+  ],
+  "problema": {
+    "eyebrow": "O mercado mudou",
+    "statement": "quem depende só de indicação vive preso a uma receita imprevisível.",
+    "paragrafo": "Durante anos, arquitetos cresceram através de indicações. Hoje, enquanto alguns escritórios esperam ser lembrados, outros são encontrados todos os dias por potenciais clientes através do digital.",
+    "dores": [
+      "Dependência de indicações",
+      "Falta de previsibilidade financeira",
+      "Receita instável mês após mês",
+      "Estagnação no faturamento",
+      "Falta de tempo para crescer",
+      "Marketing sem retorno",
+      "Conteúdo sem resultado",
+      "Dificuldade para captar projetos online"
+    ],
+    "fecho": "O problema não é falta de talento. É falta de estrutura."
+  },
+  "categoria": {
+    "negacoes": ["Não somos uma mentoria.", "Não somos uma agência.", "Não somos networking."],
+    "afirmacao": "Somos a primeira rede de escritórios de arquitetura do Brasil.",
+    "paragrafo": "Ocupamos uma categoria nova: o crescimento estruturado. O associado mantém autonomia total sobre seus projetos e seu público · a ARQX estrutura o negócio: posicionamento, captação, gestão e escala."
+  },
+  "metodo": {
+    "eyebrow": "O Método X™",
+    "statement": "a junção da arquitetura e do dinheiro.",
+    "pilares": [
+      { "nome": "Posicionamento", "linha": "Sem posicionamento você compete por preço; com posicionamento você vira a escolha óbvia." },
+      { "nome": "Máquina de Receita", "linha": "Construção de funis de vendas para vender mais." },
+      { "nome": "Gestão", "linha": "Organização estratégica, financeira e jurídica; métricas, dados e KPIs." },
+      { "nome": "Escala", "linha": "Pegamos a máquina e escalamos 2x, 3x, 5x." }
+    ],
+    "cta": { "label": "Ver o método completo →", "href": "/metodo-x" }
+  },
+  "quote": {
+    "texto": "o arquiteto brilhante que quebra é o retrato de um mercado que ensina tudo, menos a lucrar.",
+    "cite": "Lucas Galy",
+    "role": "fundador da ARQX"
+  },
+  "portfolio": {
+    "eyebrow": "Portfólio da rede",
+    "statement": "projetos que também dão lucro.",
+    "confirm": "CONFIRMAR projetos reais · placeholders até o Lucas enviar",
+    "cta": { "label": "Ver todos os projetos →", "href": "/portfolio" }
+  },
+  "resultados": {
+    "eyebrow": "Resultados",
+    "cases": [
+      { "valor": "R$1MM", "prazo": "em 6 meses" },
+      { "valor": "R$306 mil", "prazo": "em 3 meses" },
+      { "valor": "R$100 mil", "prazo": "em 15 dias (funil)" }
+    ],
+    "disclaimer": "Resultados individuais de associados. Não representam garantia de resultado."
+  },
+  "ctaFinal": {
+    "statement": "posso te considerar um associado da arqx?",
+    "cta": { "label": "Quero ser um associado →", "href": "/associar" }
+  }
+}

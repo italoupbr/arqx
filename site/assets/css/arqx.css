@@ -1,0 +1,222 @@
+/* ARQX Design System — global entry point.
+   Consumers link THIS file only. Import order matters: fonts → tokens → base. */
+/* ARQX webfonts. Berling (display serif italic) is the signature voice;
+   Delta (grotesque) is the structural display sans; Inter carries UI + body. */
+@font-face{font-family:"Berling";src:url("../fonts/berling-italic.otf") format("opentype");font-weight:400;font-style:italic;font-display:swap}
+@font-face{font-family:"Delta";src:url("../fonts/delta-medium.otf") format("opentype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Inter";src:url("../fonts/inter-400.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Inter";src:url("../fonts/inter-500.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Inter";src:url("../fonts/inter-600.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Inter";src:url("../fonts/inter-700.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+
+/* ARQX color system — a warm, low-light, editorial palette.
+   Foundation is near-black; cream is the primary ink. Taupe is the only
+   chromatic accent — everything else is a warm neutral. Sampled directly
+   from the ARQX brand palette plate. */
+:root{
+  /* — Brand raw values — */
+  --arqx-black:#0a0908;      /* deepest background, near-black warm */
+  --arqx-cream:#faf6eb;      /* signature off-white ink */
+  --arqx-white:#ffffff;
+  --arqx-lightgray:#cecece;
+  --arqx-taupe:#a58d7e;      /* the single accent — warm greige */
+  --arqx-midgray:#7e7e7e;
+  --arqx-darkgray:#545454;
+
+  /* — Warm neutral ramp (900 = darkest) — */
+  --stone-900:#0a0908;
+  --stone-850:#121010;
+  --stone-800:#1a1715;
+  --stone-750:#221e1b;
+  --stone-700:#2c2723;
+  --stone-600:#3a3531;
+  --stone-500:#545454;
+  --stone-400:#7e7e7e;
+  --stone-300:#a09a92;
+  --stone-250:#cecece;
+  --stone-200:#dedad2;
+  --stone-100:#efeae0;
+  --stone-050:#faf6eb;
+
+  /* — Accent (taupe) — */
+  --taupe-700:#6f5b4d;
+  --taupe-600:#846d5d;
+  --taupe-500:#a58d7e;
+  --taupe-400:#bda99b;
+  --taupe-300:#d3c4b8;
+
+  /* — Semantic aliases (dark is the canonical surface) — */
+  --bg-base:var(--stone-900);
+  --bg-raised:var(--stone-800);
+  --bg-sunken:#050403;
+  --surface-card:var(--stone-800);
+  --surface-card-hover:var(--stone-750);
+  --surface-inset:var(--stone-750);
+  --surface-overlay:rgba(10,9,8,.72);
+
+  --text-primary:var(--stone-050);
+  --text-secondary:var(--stone-300);
+  --text-muted:var(--stone-400);
+  --text-inverse:var(--stone-900);
+  --text-accent:var(--taupe-400);
+
+  --line-hairline:rgba(250,246,235,.10);
+  --line-soft:rgba(250,246,235,.16);
+  --line-strong:rgba(250,246,235,.28);
+
+  --accent:var(--taupe-500);
+  --accent-hover:var(--taupe-400);
+  --accent-quiet:rgba(165,141,126,.14);
+
+  /* — Light surface (used for inverted cards / documents) — */
+  --paper:var(--stone-050);
+  --paper-ink:var(--stone-900);
+  --paper-line:rgba(10,9,8,.12);
+
+  /* — Feedback (kept muted to protect the palette) — */
+  --positive:#7f8a6a;
+  --caution:#c0a15e;
+  --critical:#a8574c;
+
+  /* — Confirm flag (open items pending client sign-off — from the real site spec) — */
+  --confirm:#e0b040;
+  --confirm-quiet:rgba(224,176,64,.12);
+}
+
+/* ARQX typography scale.
+   Three voices:
+   - Berling  → display italic serif. Hero statements, pull quotes, the wordmark.
+                Always lowercase, always italic (the face only ships italic).
+   - Delta    → grotesque display sans. Section labels, numerals, structural
+                headings. Confident, tight, often uppercase with tracking.
+   - Inter    → workhorse. All body, UI, captions, data. */
+:root{
+  --font-display:"Berling",Georgia,"Times New Roman",serif;   /* italic serif */
+  --font-structure:"Delta","Helvetica Neue",Arial,sans-serif; /* grotesque */
+  --font-body:"Inter","Helvetica Neue",Arial,sans-serif;
+  --font-mono:"SFMono-Regular",ui-monospace,"Menlo",monospace;
+
+  /* Type scale — 1.25 major-third-ish, tuned for editorial display */
+  --text-2xs:11px;
+  --text-xs:12px;
+  --text-sm:13px;
+  --text-base:15px;
+  --text-md:17px;
+  --text-lg:20px;
+  --text-xl:25px;
+  --text-2xl:32px;
+  --text-3xl:42px;
+  --text-4xl:56px;
+  --text-5xl:76px;
+  --text-6xl:104px;
+
+  --leading-tight:1.04;
+  --leading-snug:1.18;
+  --leading-normal:1.5;
+  --leading-relaxed:1.65;
+
+  /* Tracking — Delta labels ride wide; Berling display rides tight */
+  --track-tight:-0.02em;
+  --track-normal:0em;
+  --track-wide:0.08em;
+  --track-caps:0.18em;
+
+  --weight-regular:400;
+  --weight-medium:500;
+  --weight-semibold:600;
+  --weight-bold:700;
+}
+
+/* ARQX spatial system — 4px base unit, generous editorial rhythm. */
+:root{
+  --space-0:0;
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:20px;
+  --space-6:24px;
+  --space-8:32px;
+  --space-10:40px;
+  --space-12:48px;
+  --space-16:64px;
+  --space-20:80px;
+  --space-24:96px;
+  --space-32:128px;
+
+  /* Layout */
+  --page-max:1240px;
+  --page-gutter:clamp(20px,5vw,72px);/* @kind spacing */
+  --content-measure:64ch;
+}
+
+/* ARQX radii, borders, shadows, blur, motion.
+   The brand reads as architectural: quiet corners, hairline rules, and light
+   that pools softly rather than dropping hard shadows. */
+:root{
+  /* Corner radii — restrained. Sharp-ish, never pill unless a control. */
+  --radius-none:0;
+  --radius-xs:3px;
+  --radius-sm:6px;
+  --radius-md:10px;
+  --radius-lg:16px;
+  --radius-xl:24px;
+  --radius-pill:999px;
+
+  --border-hairline:1px solid var(--line-hairline);
+  --border-soft:1px solid var(--line-soft);
+  --border-strong:1px solid var(--line-strong);
+
+  /* Shadows — soft, warm, low-contrast pools of shade on dark ground */
+  --shadow-sm:0 1px 2px rgba(0,0,0,.4);
+  --shadow-md:0 8px 24px -8px rgba(0,0,0,.55);
+  --shadow-lg:0 24px 60px -16px rgba(0,0,0,.65);
+  --shadow-glow:0 0 0 1px var(--line-soft),0 30px 80px -30px rgba(0,0,0,.8);
+  --shadow-inset:inset 0 1px 0 rgba(250,246,235,.05);
+
+  /* Blur — used sparingly, for overlays and sticky chrome */
+  --blur-chrome:saturate(120%) blur(18px);/* @kind other */
+
+  /* Motion — architectural: unhurried, no bounce */
+  --ease-standard:cubic-bezier(.4,0,.2,1);/* @kind other */
+  --ease-out:cubic-bezier(.16,1,.3,1);/* @kind other */
+  --ease-in:cubic-bezier(.4,0,1,1);/* @kind other */
+  --dur-fast:140ms;/* @kind other */
+  --dur-base:240ms;/* @kind other */
+  --dur-slow:440ms;/* @kind other */
+  --dur-editorial:720ms;/* @kind other */
+}
+
+/* ARQX base layer — element defaults expressed through tokens.
+   Dark, warm, editorial by default. */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--bg-base);
+  color:var(--text-primary);
+  font-family:var(--font-body);
+  font-size:var(--text-base);
+  line-height:var(--leading-normal);
+  font-weight:var(--weight-regular);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+h1,h2,h3,h4,h5,h6{margin:0;font-weight:var(--weight-semibold);line-height:var(--leading-snug)}
+p{margin:0;text-wrap:pretty}
+a{color:var(--text-accent);text-decoration:none;transition:color var(--dur-fast) var(--ease-standard)}
+a:hover{color:var(--accent-hover)}
+::selection{background:var(--accent-quiet);color:var(--text-primary)}
+img{max-width:100%;display:block}
+hr{border:none;border-top:var(--border-hairline);margin:var(--space-8) 0}
+
+/* Signature display helper — the ARQX italic voice */
+.arqx-display{font-family:var(--font-display);font-style:italic;font-weight:400;letter-spacing:var(--track-tight);line-height:var(--leading-tight);text-transform:lowercase}
+/* Structural label — Delta, uppercase, tracked */
+.arqx-label{font-family:var(--font-structure);text-transform:uppercase;letter-spacing:var(--track-caps);font-size:var(--text-xs);color:var(--text-muted)}
+
+
+/* Layout multi-pagina: o documento rola, nao um container interno.
+   O Header ja cai para window quando nao encontra [data-scroll]. */
+html { scroll-behavior: smooth; }
+#root { min-height: 100%; }
