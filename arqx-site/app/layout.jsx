@@ -3,6 +3,7 @@ import Header from "@/components/chrome/Header";
 import Footer from "@/components/chrome/Footer";
 import MobileNav from "@/components/chrome/MobileNav";
 import Reveal from "@/components/Reveal";
+import ReviewWidget from "@/components/review/ReviewWidget";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
 import { SITEWIDE_GRAPH, JsonLd } from "@/lib/schema";
 
@@ -40,6 +41,7 @@ export default function RootLayout({ children }) {
         <Footer />
         <MobileNav />
         <Reveal />
+        <ReviewWidget />
       </body>
     </html>
   );
