@@ -30,6 +30,7 @@ export async function POST(req) {
     whatsapp: whatsapp.slice(0, 40),
     cidade_uf: cidade_uf.slice(0, 120),
     instagram: String(body.instagram || "").trim().slice(0, 120) || null,
+    escritorio: String(body.escritorio || "").trim().slice(0, 200) || null,
     tempo_atuacao: String(body.tempo_atuacao || "").slice(0, 40) || null,
     faturamento_faixa: String(body.faturamento_faixa || "").slice(0, 40) || null,
     desafio: String(body.desafio || "").trim().slice(0, 2000) || null,

@@ -89,9 +89,9 @@ button{font-family:inherit}
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
 }
 
-/* Espaço para a tab bar mobile */
-body{padding-bottom:76px}
-@media(min-width:860px){body{padding-bottom:0}}
+/* Espaço para a tab bar mobile (só nas páginas v1, que têm o MobileNav) */
+.classic-shell{padding-bottom:76px}
+@media(min-width:860px){.classic-shell{padding-bottom:0}}
 
 /* ── Hovers do DS (server components → hover em CSS, mesmo visual do bundle) ── */
 .arqx-btn:hover{transform:translateY(-1px)}

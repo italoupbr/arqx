@@ -1,200 +1,590 @@
-/* Home · spec §5.1, 9 dobras. Copy vem de content/home.json (§7.1). */
-import Link from "next/link";
-import c from "@/content/home.json";
-import Button from "@/components/ds/Button";
-import { Eyebrow, ConfirmTag, StatBlock, FeatureRow, PullQuote, Card, Divider } from "@/components/ds/primitives";
-import HeroRotator from "@/components/home/HeroRotator";
+/* Home v2 · linha visual aprovada pelo cliente (port fiel do artefato dele).
+   Copy do artefato preservada; travessões substituídos (regra global) e
+   encoding normalizado. Fotos reais em /img/projetos. FX em HomeV2Fx. */
+import "./home-v2.css";
+import HomeV2Fx from "@/components/home/HomeV2Fx";
 
 export const metadata = {
-  title: { absolute: "ARQX · A primeira rede de escritórios de arquitetura do Brasil" },
+  title: { absolute: "ARQX® · The business behind the architecture" },
   description:
-    "A ARQX estrutura escritórios de arquitetura para crescer com previsibilidade: posicionamento, captação, gestão e escala. Estrutura para crescer. Liberdade para criar.",
+    "ARQX é uma Growth Partner para escritórios de arquitetura estabelecidos. Transformamos reputação em crescimento previsível através de uma infraestrutura completa de negócios.",
   alternates: { canonical: "/" },
 };
 
-const SECTION = { padding: "var(--space-24) var(--page-gutter)" };
-const INNER = { maxWidth: "var(--page-max)", marginInline: "auto" };
+const IMG = (n) => `/img/projetos/p${n}.webp`;
 
-export default function Home() {
+const FOLIO = [
+  [16, "Residencial", "Fachada residencial de alto padrão com brises e paisagismo"],
+  [2, "Interiores", "Cozinha gourmet com ilha de travertino e bancos dourados"],
+  [9, "Residencial", "Fachada com morador e cachorro, lifestyle de alto padrão"],
+  [10, "Interiores", "Cozinha integrada com vista para piscina e teto ripado"],
+  [5, "Residencial", "Fachada moderna com carro na garagem"],
+  [15, "Interiores", "Suíte master com marcenaria ripada e vista para o jardim"],
+  [14, "Interiores", "Closet de alto padrão com marcenaria em madeira e vitrine"],
+  [1, "Interiores", "Living amplo e claro com sofás em bouclé e mesa curva de madeira"],
+];
+
+export default function HomeV2() {
   return (
-    <>
-      {/* ── Dobra 1: HERO ── */}
-      <section
-        style={{
-          position: "relative", minHeight: "86vh", display: "flex", alignItems: "center",
-          padding: "var(--space-20) var(--page-gutter)", overflow: "hidden",
-        }}
-      >
-        <img
-          src="/img/interior.webp"
-          alt=""
-          fetchPriority="high"
-          style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", opacity: 0.5 }}
-        />
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(100deg, var(--arqx-black) 30%, rgba(10,9,8,.55) 70%, rgba(10,9,8,.35))" }} />
-        <div style={{ ...INNER, position: "relative", width: "100%" }}>
-          <Eyebrow>{c.hero.eyebrow}</Eyebrow>
-          <ConfirmTag>{c.hero.bgConfirm}</ConfirmTag>
-          <h1 className="arqx-display" style={{ fontSize: "clamp(52px,9vw,124px)", margin: "26px 0 22px" }}>
-            {c.hero.h1}
-          </h1>
-          <p style={{ fontSize: "var(--text-md)", color: "var(--text-secondary)", maxWidth: "54ch", lineHeight: "var(--leading-relaxed)" }}>
-            {c.hero.sub}
-            <ConfirmTag>{c.hero.subConfirm}</ConfirmTag>
-          </p>
-          <div style={{ display: "flex", gap: "14px", flexWrap: "wrap", marginTop: "38px" }}>
-            <Button href={c.hero.ctaPrimary.href} size="lg" variant="primary">{c.hero.ctaPrimary.label}</Button>
-            <Button href={c.hero.ctaSecondary.href} size="lg" variant="secondary">{c.hero.ctaSecondary.label}</Button>
-          </div>
-          <HeroRotator pairs={c.hero.rotator} />
-        </div>
-      </section>
+    <div className="v2" id="v2root">
+      <a className="skip" href="#hero">Ir para o conteúdo</a>
+      <div className="grain" aria-hidden="true"></div>
+      <div className="progress" id="progress" aria-hidden="true"></div>
+      <div className="cursor" aria-hidden="true"></div>
+      <div className="cursor-dot" aria-hidden="true"></div>
 
-      {/* ── Dobra 2: MÉTRICAS ── */}
-      <section style={{ borderTop: "1px solid var(--line-hairline)", borderBottom: "1px solid var(--line-hairline)", padding: "var(--space-16) var(--page-gutter)" }}>
-        <div style={{ ...INNER, display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: "40px" }}>
-          {c.metricas.map((m) => (
-            <div key={m.label} className="reveal">
-              <StatBlock value={m.value} prefix={m.prefix} suffix={m.suffix} label={m.label} confirm={m.confirm} />
+      {/* NAV */}
+      <header className="nav" id="nav">
+        <div className="nav-inner">
+          <a className="brand magnetic" href="#hero" aria-label="ARQX · início">arqx<sup>®</sup></a>
+          <nav className="nav-links" aria-label="Principal">
+            <a href="#sobre">A ARQX</a>
+            <a href="#estrutura">Estrutura</a>
+            <a href="#rede">Rede</a>
+            <a href="#selecao">Associação</a>
+          </nav>
+          <div className="nav-right">
+            <a href="#selecao" className="nav-cta" data-modal-open>Solicitar associação <span className="ar">→</span></a>
+            <button className="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
+          </div>
+        </div>
+      </header>
+
+      {/* MOBILE MENU */}
+      <nav className="mobile-menu" id="mobileMenu" aria-label="Menu móvel">
+        <a href="#sobre"><span className="n">01</span> A ARQX</a>
+        <a href="#estrutura"><span className="n">02</span> Estrutura</a>
+        <a href="#rede"><span className="n">03</span> Rede</a>
+        <a href="#selecao"><span className="n">04</span> Associação</a>
+        <div className="mm-foot"><a href="#selecao" className="mm-cta" data-modal-open>Solicitar associação <span>→</span></a></div>
+      </nav>
+
+      <main>
+        {/* HERO */}
+        <section className="hero" id="hero" data-theme="dark">
+          <div className="hero-grid-bg" aria-hidden="true"></div>
+          <div className="hero-x" data-parallax="0.1" aria-hidden="true">X</div>
+          <div className="hero-inner">
+            <div className="hero-left">
+              <h1 className="hero-h lines" aria-label="Seu escritório cresceu. Sua estrutura de crescimento não.">
+                <span><i>Seu escritório</i></span>
+                <span><i><span className="serif">cresceu.</span> Sua estrutura</i></span>
+                <span><i>de crescimento <span className="serif">não.</span></i></span>
+              </h1>
+              <div className="hero-bottom">
+                <p className="hero-sub reveal" data-d="2">
+                  A ARQX se associa a escritórios de arquitetura estabelecidos e implementa a infraestrutura de negócios
+                  necessária para transformar reputação em crescimento previsível.
+                </p>
+                <div className="hero-cta-col reveal" data-d="3">
+                  <a href="#selecao" className="btn magnetic" data-modal-open>Solicitar associação <span className="ar">→</span></a>
+                  <p className="hero-micro">Para escritórios a partir de <b>R$ 50 mil/mês.</b> Novos escritórios são avaliados antes da entrada na rede.</p>
+                </div>
+              </div>
             </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ── Dobra 3: O PROBLEMA ── */}
-      <section style={SECTION}>
-        <div style={INNER}>
-          <div className="reveal">
-            <Eyebrow>{c.problema.eyebrow}</Eyebrow>
-            <h2 className="arqx-display" style={{ fontSize: "clamp(32px,4.5vw,56px)", margin: "22px 0 18px", maxWidth: "22ch" }}>
-              {c.problema.statement}
-            </h2>
-            <p style={{ color: "var(--text-secondary)", maxWidth: "62ch", lineHeight: "var(--leading-relaxed)" }}>{c.problema.paragrafo}</p>
-          </div>
-          <div style={{ marginTop: "var(--space-12)", borderBottom: "1px solid var(--line-soft)" }}>
-            {c.problema.dores.map((d, i) => (
-              <div key={d} className="reveal">
-                <FeatureRow index={i + 1} title={d} />
+            <div className="hero-right reveal" data-d="1">
+              <div className="hero-media" id="heroStage" role="group" aria-label="Projetos de arquitetura de alto padrão · carrossel">
+                <div className="hero-card"><img src={IMG(6)} alt="Fachada de alto padrão com brises de madeira ao entardecer" fetchPriority="high" /></div>
+                <div className="hero-card"><img src={IMG(8)} alt="Residência contemporânea vista da rua" loading="lazy" decoding="async" /></div>
+                <div className="hero-card"><img src={IMG(11)} alt="Interior com parede de pedra e pendentes de cobre" loading="lazy" decoding="async" /></div>
+                <div className="hero-card"><img src={IMG(16)} alt="Fachada residencial com paisagismo tropical" loading="lazy" decoding="async" /></div>
+                <div className="hero-card"><img src={IMG(10)} alt="Cozinha integrada com vista para piscina" loading="lazy" decoding="async" /></div>
+                <div className="hero-hud">
+                  <span className="hero-sheen" aria-hidden="true"></span>
+                  <span className="hero-glare" aria-hidden="true"></span>
+                  <span className="hero-cap tl">ARQX / SELECTED WORK</span>
+                  <span className="hero-cap br"><span id="heroIdx">01</span> / 05</span>
+                  <span className="hero-plus p1" aria-hidden="true"></span>
+                  <span className="hero-plus p2" aria-hidden="true"></span>
+                </div>
               </div>
+            </div>
+          </div>
+          <div className="scroll-hint" aria-hidden="true"><span>Scroll</span><span className="ln"></span></div>
+        </section>
+
+        {/* TICKER */}
+        <section className="ticker" aria-hidden="true" data-theme="dark">
+          <div className="ticker-track" id="ticker">
+            {[0, 1].map((k) => (
+              <span key={k} style={{ display: "contents" }}>
+                <span>Estratégia</span><span className="dot"></span>
+                <span>Aquisição</span><span className="dot"></span>
+                <span>Posicionamento</span><span className="dot"></span>
+                <span>Comercial</span><span className="dot"></span>
+                <span>Crescimento</span><span className="dot"></span>
+                <span>Estrutura</span><span className="dot"></span>
+                <span className="serif brandmark">arqx<sup>®</sup></span><span className="dot"></span>
+              </span>
             ))}
           </div>
-          <p className="arqx-display reveal" style={{ fontSize: "clamp(22px,3vw,32px)", marginTop: "var(--space-12)", color: "var(--text-primary)" }}>
-            {c.problema.fecho}
-          </p>
-        </div>
-      </section>
+        </section>
 
-      {/* ── Dobra 4: A CATEGORIA ── */}
-      <section style={{ ...SECTION, background: "var(--bg-sunken)", borderTop: "1px solid var(--line-hairline)", borderBottom: "1px solid var(--line-hairline)" }}>
-        <div style={INNER}>
-          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
-            {c.categoria.negacoes.map((n) => (
-              <p key={n} className="arqx-display reveal" style={{ fontSize: "clamp(24px,3.6vw,44px)", color: "var(--text-muted)" }}>
-                {n}
-              </p>
-            ))}
-            <p className="arqx-display reveal" style={{ fontSize: "clamp(28px,4.2vw,52px)", color: "var(--text-primary)", marginTop: "8px" }}>
-              {c.categoria.afirmacao}
+        {/* CONTRADIÇÃO */}
+        <section className="blk light" id="sobre" data-theme="light">
+          <div className="wrap">
+            <span className="eyebrow reveal">01 · A contradição</span>
+            <h2 className="contra-h reveal" data-d="1">
+              Você construiu reputação. Mas reputação sozinha não constrói <span className="serif">previsibilidade.</span>
+            </h2>
+            <p className="contra-lead reveal" data-d="1">
+              Muitos escritórios chegam aos R$ 30k, R$ 50k, R$ 80k ou R$ 100k por mês graças a networking, clientes
+              antigos, fornecedores, corretores e recomendações. Isso é valioso.{" "}
+              <b>Mas existe uma diferença entre ser indicado e possuir uma estrutura capaz de gerar crescimento.</b>
             </p>
+            <div className="cmp reveal" data-d="1">
+              <div className="cmp-node" aria-hidden="true"><span className="ar">→</span></div>
+              <div className="cmp-col a">
+                <div className="cmp-top"><span className="cmp-lab">Indicação</span><span className="cmp-id">Modelo A</span></div>
+                <div className="cmp-word serif">Indicação</div>
+                <p className="cmp-desc">O canal que trouxe o seu escritório até aqui: valioso, mas fora do seu controle.</p>
+                <div className="cmp-sig" aria-hidden="true">
+                  <i style={{ "--h": "52%" }}></i><i style={{ "--h": "88%" }}></i><i style={{ "--h": "30%" }}></i><i style={{ "--h": "70%" }}></i><i style={{ "--h": "24%" }}></i><i style={{ "--h": "60%" }}></i><i style={{ "--h": "38%" }}></i>
+                </div>
+                <div className="cmp-rows">
+                  <div className="cmp-row"><span className="rn">01</span><div><span className="rt">Imprevisível</span><span className="rd">Chega quando chega, sem hora marcada.</span></div></div>
+                  <div className="cmp-row"><span className="rn">02</span><div><span className="rt">Não controlável</span><span className="rd">Depende da decisão e da memória de terceiros.</span></div></div>
+                  <div className="cmp-row"><span className="rn">03</span><div><span className="rt">Difícil de escalar</span><span className="rd">Não responde a esforço nem a demanda.</span></div></div>
+                  <div className="cmp-row"><span className="rn">04</span><div><span className="rt">Dependente de lembrança</span><span className="rd">Se não lembram de você, não acontece.</span></div></div>
+                </div>
+              </div>
+              <div className="cmp-col b">
+                <div className="cmp-top"><span className="cmp-lab">Estrutura</span><span className="cmp-id">Modelo B</span></div>
+                <div className="cmp-word serif">Estrutura</div>
+                <p className="cmp-desc">O sistema que a ARQX implementa por trás do escritório: desenhado para crescer.</p>
+                <div className="cmp-sig" aria-hidden="true">
+                  <i style={{ "--h": "34%" }}></i><i style={{ "--h": "46%" }}></i><i style={{ "--h": "58%" }}></i><i style={{ "--h": "66%" }}></i><i style={{ "--h": "78%" }}></i><i style={{ "--h": "88%" }}></i><i style={{ "--h": "100%" }}></i>
+                </div>
+                <div className="cmp-rows">
+                  <div className="cmp-row"><span className="rn">01</span><div><span className="rt">Planejável</span><span className="rd">Você define a meta e o caminho até ela.</span></div><span className="rk">+</span></div>
+                  <div className="cmp-row"><span className="rn">02</span><div><span className="rt">Mensurável</span><span className="rd">Cada etapa tem um número por trás.</span></div><span className="rk">+</span></div>
+                  <div className="cmp-row"><span className="rn">03</span><div><span className="rt">Replicável</span><span className="rd">Funciona de novo, e de novo.</span></div><span className="rk">+</span></div>
+                  <div className="cmp-row"><span className="rn">04</span><div><span className="rt">Construída para crescer</span><span className="rd">Feita para sustentar o próximo estágio.</span></div><span className="rk">+</span></div>
+                </div>
+              </div>
+            </div>
+            <div className="cmp-foot reveal">
+              <span className="fx dim">Indicação é consequência.</span>
+              <span className="fa">→</span>
+              <span className="fx hot">Estrutura é estratégia.</span>
+            </div>
           </div>
-          <p className="reveal" style={{ color: "var(--text-secondary)", maxWidth: "62ch", lineHeight: "var(--leading-relaxed)", marginTop: "var(--space-10)" }}>
-            {c.categoria.paragrafo}
-          </p>
-        </div>
-      </section>
+        </section>
 
-      {/* ── Dobra 5: MÉTODO X (teaser) ── */}
-      <section style={SECTION}>
-        <div style={INNER}>
-          <div className="reveal">
-            <Eyebrow>{c.metodo.eyebrow}</Eyebrow>
-            <h2 className="arqx-display" style={{ fontSize: "clamp(32px,4.5vw,56px)", margin: "22px 0 var(--space-12)" }}>
-              {c.metodo.statement}
+        {/* SINTOMAS */}
+        <section className="blk" data-theme="dark">
+          <div className="wrap">
+            <div className="sym-head">
+              <h2 className="reveal">O limite <span className="serif">invisível</span> do crescimento por esforço.</h2>
+              <span className="tick reveal" data-d="1">ARQX / DIAGNÓSTICO / 02</span>
+            </div>
+            <div className="sym reveal"><div className="num">01</div><div className="body"><span className="tick">Previsibilidade</span><p>Você fatura, mas não sabe exatamente de onde virá o próximo projeto.</p></div></div>
+            <div className="sym reveal"><div className="num">02</div><div className="body"><span className="tick">Aquisição</span><p>O escritório cresceu. A aquisição de clientes não.</p></div></div>
+            <div className="sym reveal"><div className="num">03</div><div className="body"><span className="tick">Escala</span><p>Trabalhar mais deixou de significar crescer mais.</p></div></div>
+          </div>
+        </section>
+
+        {/* BAND */}
+        <section className="band" data-theme="dark" aria-label="Arquitetura de alto padrão">
+          <div className="band-media" data-cover><img src={IMG(8)} alt="Residência contemporânea de alto padrão vista da rua, com fachada de madeira e concreto" loading="lazy" decoding="async" /></div>
+          <div className="band-in">
+            <div className="band-top"><span className="tick">ARQX / PORTFOLIO</span><span className="tick">The business behind the architecture</span></div>
+            <div><p className="band-quote reveal">Reputação abre portas. <span className="serif">Estrutura</span> constrói uma empresa.</p></div>
+            <div className="band-foot"><span className="tick">Residencial · Alto padrão</span><span className="tick">02 / 07</span></div>
+          </div>
+        </section>
+
+        {/* O QUE É A ARQX */}
+        <section className="blk" id="oque" data-theme="dark">
+          <div className="wrap">
+            <span className="eyebrow reveal" style={{ marginBottom: "clamp(30px,5vh,60px)", display: "inline-flex" }}>03 · O que é a ARQX</span>
+            <div className="def">
+              <div className="def-l reveal">
+                <h2>Não somos uma agência. <span className="serif">Entramos na estrutura.</span></h2>
+                <p>
+                  A ARQX é uma Growth Partner de escritórios de arquitetura. Selecionamos empresas com operação validada
+                  e nos associamos a elas para construir, implementar e acompanhar a infraestrutura necessária para o
+                  próximo estágio de crescimento.
+                </p>
+                <div className="def-hl">
+                  <p>Seu escritório permanece seu. Sua marca permanece sua. Sua arquitetura permanece sua.</p>
+                  <p className="mono-line">Mas você deixa de crescer sozinho.</p>
+                </div>
+              </div>
+              <div className="def-media img-clip reveal" data-d="1">
+                <img src={IMG(11)} alt="Interior de alto padrão com parede de pedra, pendentes de cobre e vista para piscina" loading="lazy" decoding="async" />
+                <span className="cap">ARQX / SELECTED WORK / 03</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* INFRAESTRUTURA */}
+        <section className="blk light" id="estrutura" data-theme="light">
+          <div className="wrap">
+            <div className="infra-head">
+              <span className="eyebrow reveal">04 · A infraestrutura ARQX</span>
+              <h2 className="reveal" data-d="1" style={{ marginTop: 22 }}>Uma estrutura de crescimento <span className="serif">envolvendo</span> o seu escritório.</h2>
+            </div>
+            <div className="infra">
+              {[
+                ["01", "Estratégia", "Plano de crescimento, metas, diagnóstico e prioridades."],
+                ["02", "Posicionamento", "Construção de autoridade, percepção de valor e diferenciação."],
+                ["03", "Aquisição", "Estruturas de captação para reduzir a dependência de indicações."],
+                ["04", "Comercial", "Processos, CRM, acompanhamento, negociação e conversão."],
+                ["05", "Marketing", "Campanhas, conteúdo e geração de oportunidades integradas à estratégia."],
+                ["06", "Inteligência", "Dados, métricas, análise de gargalos e decisões de crescimento."],
+              ].map(([n, nome, desc]) => (
+                <div className="layer reveal" key={n}>
+                  <span className="lnum">{n}</span>
+                  <span className="lname"><span className="tag">{nome}</span></span>
+                  <span className="ldesc">{desc}</span>
+                  <span className="lx">ARQX / GROWTH SYSTEM / {n}</span>
+                </div>
+              ))}
+            </div>
+            <div className="infra-core reveal" data-d="1">
+              <div className="cd">
+                <span className="cd-ring r1" aria-hidden="true"></span>
+                <span className="cd-ring r2" aria-hidden="true"></span>
+                <span className="cd-ring r3" aria-hidden="true"></span>
+                <div className="cd-orbit" aria-hidden="true">
+                  {[["-90deg", "Estratégia"], ["-30deg", "Aquisição"], ["30deg", "Marketing"], ["90deg", "Inteligência"], ["150deg", "Comercial"], ["210deg", "Posicionamento"]].map(([a, t]) => (
+                    <div className="cd-node" style={{ "--a": a }} key={t}>
+                      <div className="cd-spin"><span className="cd-chip"><i className="cd-dot"></i>{t}</span></div>
+                    </div>
+                  ))}
+                </div>
+                <div className="cd-core">
+                  <span className="core-lab">O núcleo</span>
+                  <div className="core-name">Seu <span className="serif">escritório</span></div>
+                  <p className="core-sub">O escritório continua sendo o protagonista. A ARQX passa a ser a estrutura por trás do seu crescimento.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* O QUE MUDA */}
+        <section className="blk" data-theme="dark">
+          <div className="wrap">
+            <span className="eyebrow reveal">05 · O que muda</span>
+            <h2 className="change-h reveal" data-d="1" style={{ marginTop: 22 }}>Antes da ARQX. <span className="serif">Depois da estrutura.</span></h2>
+            <div className="change">
+              <div className="col before reveal">
+                <div className="top"><span className="k">Antes</span><span className="st serif">Esforço</span></div>
+                <ul>
+                  <li><span className="m">01</span>Indicações como principal canal.</li>
+                  <li><span className="m">02</span>Ações de marketing isoladas.</li>
+                  <li><span className="m">03</span>Pouca previsibilidade.</li>
+                  <li><span className="m">04</span>Comercial dependente do fundador.</li>
+                  <li><span className="m">05</span>Crescimento por esforço.</li>
+                  <li><span className="m">06</span>Decisões baseadas em percepção.</li>
+                </ul>
+              </div>
+              <div className="col after reveal" data-d="1">
+                <div className="top"><span className="k">Depois</span><span className="st serif">Estrutura</span></div>
+                <ul>
+                  <li><span className="m">01</span>Múltiplas fontes de aquisição.</li>
+                  <li><span className="m">02</span>Estratégia integrada.</li>
+                  <li><span className="m">03</span>Pipeline estruturado.</li>
+                  <li><span className="m">04</span>Processos comerciais.</li>
+                  <li><span className="m">05</span>Crescimento acompanhado por indicadores.</li>
+                  <li><span className="m">06</span>Decisões orientadas por dados.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* TIMELINE */}
+        <section className="blk light" data-theme="light">
+          <div className="wrap">
+            <div className="tl-head">
+              <span className="eyebrow reveal">06 · Experiência de associação</span>
+              <h2 className="reveal" data-d="1" style={{ marginTop: 22 }}>
+                Quando um escritório entra na ARQX, não recebe um fornecedor. Recebe uma <span className="serif">estrutura.</span>
+              </h2>
+            </div>
+            <div className="timeline" id="timeline">
+              <div className="tl-line" aria-hidden="true"><span id="tlProgress"></span></div>
+              {[
+                ["00", "Seleção", "Avaliação do escritório e compatibilidade com a rede."],
+                ["01", "Diagnóstico", "Análise profunda de posicionamento, comercial, marketing, gestão e crescimento."],
+                ["02", "Arquitetura de crescimento", "Construção do plano estratégico do escritório para o próximo estágio."],
+                ["03", "Implantação", "Integração dos processos e da infraestrutura ARQX ao escritório."],
+                ["04", "Operação", "Execução, acompanhamento e otimização contínua."],
+                ["05", "Escala", "Novos canais, metas, equipe, eficiência e expansão."],
+              ].map(([n, t, d]) => (
+                <div className="tl-item" key={n}>
+                  <div className="tl-k"><span className="st">{n}</span><div className="tl-code">ARQX / ONBOARDING / {n}</div></div>
+                  <div><h3>{t}</h3><p>{d}</p></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* PORTFÓLIO STRIP */}
+        <section className="folio" data-theme="dark" aria-label="Portfólio">
+          <div className="folio-head">
+            <h2 className="reveal">Arquitetura que sustenta <span className="serif">reputações.</span></h2>
+            <p className="reveal" data-d="1">A estrutura por trás de escritórios que projetam o extraordinário.</p>
+          </div>
+          <div className="folio-track" id="folioTrack">
+            {[false, true].map((dup) =>
+              FOLIO.map(([n, cat, alt], i) => (
+                <figure className="folio-item" key={`${dup}-${n}`} aria-hidden={dup || undefined}>
+                  <div className="ph"><img src={IMG(n)} alt={dup ? "" : alt} loading="lazy" decoding="async" /></div>
+                  <figcaption className="meta"><span className="t">{cat}</span><span>{String(i + 1).padStart(2, "0")}</span></figcaption>
+                </figure>
+              ))
+            )}
+          </div>
+        </section>
+
+        {/* REDE */}
+        <section className="blk" id="rede" data-theme="dark">
+          <div className="wrap">
+            <div className="net-head">
+              <h2 className="reveal">Escritórios independentes. <span className="serif">Uma estrutura em comum.</span></h2>
+              <div className="txt reveal" data-d="1">
+                <p>A ARQX reúne escritórios de arquitetura selecionados sob uma infraestrutura compartilhada de inteligência, crescimento e negócios.</p>
+                <p>O objetivo não é tornar os escritórios iguais. <span className="em">É tornar cada um deles mais forte.</span></p>
+                <span className="net-tag">Expansion Network · Representação conceitual</span>
+              </div>
+            </div>
+            <div className="net-grid reveal" data-d="1">
+              {[
+                ["01", "Curitiba", "ARQX / PR", true],
+                ["02", "São Paulo", "ARQX / SP", false],
+                ["03", "Maringá", "ARQX / PR", false],
+                ["04", "Florianópolis", "ARQX / SC", false],
+                ["05", "Goiânia", "ARQX / GO", false],
+              ].map(([n, city, sub, open]) => (
+                <div className={`node-cell magnetic${open ? " open" : ""}`} key={n}>
+                  <div className="nc-top"><span>Nó / {n}</span><span>+</span></div>
+                  <div><div className="nc-city serif">{city}</div><div className="nc-sub">{sub}</div></div>
+                </div>
+              ))}
+              <div className="node-cell magnetic">
+                <div className="nc-top"><span>Nó / →</span><span>×</span></div>
+                <div><div className="nc-city serif">Sua cidade</div><div className="nc-sub">Vaga em avaliação</div></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* NÚMEROS */}
+        <section className="blk-sm" data-theme="dark">
+          <div className="wrap">
+            <span className="eyebrow reveal" style={{ marginBottom: "clamp(30px,5vh,50px)", display: "inline-flex" }}>07 · Indicadores estruturais</span>
+            <div className="stats reveal" data-d="1">
+              <div className="stat"><div className="sv"><span data-count="50">0</span><span className="u">K+</span></div><div className="sl">Faturamento mensal mínimo do perfil de escritório</div></div>
+              <div className="stat"><div className="sv"><span data-count="360">0</span><span className="u">°</span></div><div className="sl">Visão de negócios sobre a operação inteira</div></div>
+              <div className="stat"><div className="sv"><span data-count="1" data-pad="2">00</span></div><div className="sl">Estrutura integrada: uma só, envolvendo o escritório</div></div>
+            </div>
+          </div>
+        </section>
+
+        {/* PARA QUEM É */}
+        <section className="blk light" data-theme="light">
+          <div className="wrap">
+            <span className="eyebrow reveal">08 · Para quem é</span>
+            <h2 className="fit-h reveal" data-d="1" style={{ marginTop: 22 }}>A ARQX começa onde a maioria das soluções <span className="serif">termina.</span></h2>
+            <div className="fit">
+              <div className="box yes reveal">
+                <div className="fl"><span>Para escritórios que</span><span>Sim</span></div>
+                <ul>
+                  <li><span className="mk">+</span>Já ultrapassaram a fase inicial.</li>
+                  <li><span className="mk">+</span>Faturam R$ 50 mil/mês ou mais.</li>
+                  <li><span className="mk">+</span>Possuem portfólio e capacidade de entrega.</li>
+                  <li><span className="mk">+</span>Querem diminuir a dependência de indicações.</li>
+                  <li><span className="mk">+</span>Estão preparados para profissionalizar o crescimento.</li>
+                  <li><span className="mk">+</span>Buscam escala sem descaracterizar sua marca.</li>
+                </ul>
+              </div>
+              <div className="box no reveal" data-d="1">
+                <div className="fl"><span>Não é para</span><span>Não</span></div>
+                <ul>
+                  <li><span className="mk">×</span>Profissionais começando do zero.</li>
+                  <li><span className="mk">×</span>Quem procura apenas gestão de tráfego.</li>
+                  <li><span className="mk">×</span>Quem quer solução rápida sem mudança operacional.</li>
+                  <li><span className="mk">×</span>Quem não abre números, processos e indicadores.</li>
+                  <li><span className="mk">×</span>Quem procura apenas curso ou conteúdo.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* MANIFESTO */}
+        <section className="light manifesto" data-theme="light">
+          <div className="wrap">
+            <p className="reveal">Todo arquiteto aprende a projetar espaços.</p>
+            <p className="reveal" data-d="1"><span className="dim">Poucos aprendem a projetar uma empresa.</span></p>
+            <p className="reveal" data-d="2" style={{ maxWidth: "26ch" }}>
+              Quando talento, reputação e indicação deixam de ser suficientes para sustentar o próximo estágio, o problema não está na arquitetura.
+            </p>
+            <p className="reveal" data-d="2">Está na <span className="serif" style={{ color: "var(--warm)" }}>estrutura.</span></p>
+            <p className="reveal" data-d="3" style={{ maxWidth: "22ch", fontSize: "clamp(20px,3vw,44px)" }}>É essa estrutura que construímos.</p>
+            <div className="sign reveal">
+              <div className="a">arqx<sup>®</sup></div>
+              <div className="b">The business behind the architecture. · A empresa por trás de quem projeta o extraordinário.</div>
+            </div>
+          </div>
+        </section>
+
+        {/* SELEÇÃO */}
+        <section className="blk" id="selecao" data-theme="dark">
+          <div className="wrap">
+            <span className="eyebrow reveal">09 · Processo de seleção</span>
+            <div className="sel" style={{ marginTop: "clamp(30px,5vh,60px)" }}>
+              <div className="sel-l reveal">
+                <h2>A ARQX não é aberta <span className="serif">para todos os escritórios.</span></h2>
+                <p>Para preservar a qualidade da operação e da rede, novos associados passam por um processo de avaliação. Não há checkout, tabela de preços ou planos. Existe candidatura.</p>
+                <a href="#selecao" className="btn magnetic" data-modal-open>Solicitar análise do meu escritório <span className="ar">→</span></a>
+              </div>
+              <div className="sel-steps reveal" data-d="1">
+                {[
+                  ["01", "Solicitação", "Você envia a solicitação de análise do escritório."],
+                  ["02", "Análise do escritório", "Avaliamos operação, perfil e compatibilidade com a rede."],
+                  ["03", "Reunião estratégica", "Conversa para entender contexto, gargalos e potencial."],
+                  ["04", "Convite para associação", "Se houver fit, o escritório é convidado a integrar a ARQX."],
+                ].map(([n, t, d]) => (
+                  <div className="sel-step" key={n}><span className="sn">{n}</span><div><div className="snm">{t}</div><div className="sd">{d}</div></div></div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section className="blk light" data-theme="light">
+          <div className="wrap">
+            <div className="faq-head">
+              <span className="eyebrow reveal">10 · Perguntas frequentes</span>
+              <h2 className="reveal" data-d="1" style={{ marginTop: 22 }}>Antes de solicitar <span className="serif">associação.</span></h2>
+            </div>
+            <div className="faq-list" id="faq">
+              {[
+                ["A ARQX é uma agência de marketing?", "Não. Marketing é uma das camadas da infraestrutura, não o produto. A ARQX é uma Growth Partner: entramos na estrutura de negócios do escritório (estratégia, posicionamento, aquisição, comercial e inteligência) e integramos tudo em um único sistema de crescimento."],
+                ["Preciso abandonar a identidade do meu escritório?", "Não. Seu escritório permanece seu, sua marca permanece sua e sua arquitetura permanece sua. A ARQX é a estrutura por trás do crescimento: o escritório continua sendo o protagonista."],
+                ["A ARQX atende arquitetos que estão começando?", "O perfil principal são escritórios já estabelecidos, com faturamento a partir de R$ 50 mil/mês, portfólio e operação real. A ARQX começa onde a maioria das soluções termina: não é um ponto de partida, é um próximo estágio."],
+                ["O que significa se tornar um escritório associado?", "Significa passar a operar com a infraestrutura ARQX envolvendo o seu escritório e integrar uma rede de escritórios selecionados, com inteligência e estrutura compartilhadas. Você deixa de crescer sozinho, mantendo total autonomia sobre a sua marca."],
+                ["A ARQX trabalha apenas com marketing e aquisição?", "Não. A aquisição é apenas uma das camadas. Também estruturamos posicionamento, processos comerciais, inteligência de dados e a estratégia de crescimento, porque mais projetos não começam no tráfego, começam na estrutura."],
+                ["Existe exclusividade por região?", "A rede é construída de forma seletiva para preservar a qualidade e evitar sobreposição entre associados. As condições de exclusividade são avaliadas caso a caso, durante o processo de seleção e reunião estratégica."],
+                ["Como funciona o processo para entrar?", "São quatro etapas: solicitação de análise, análise do escritório, reunião estratégica e, havendo fit, o convite para associação. Não há checkout: a entrada acontece por avaliação de perfil."],
+              ].map(([q, a]) => (
+                <div className="faq-item" key={q}>
+                  <button className="faq-q" aria-expanded="false"><span>{q}</span><span className="faq-ic" aria-hidden="true"></span></button>
+                  <div className="faq-a"><div className="faq-a-in">{a}</div></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA FINAL */}
+        <section className="cta" data-theme="dark">
+          <div className="cta-media" data-cover><img src={IMG(17)} alt="Interior de alto padrão com marcenaria em nogueira, iluminação difusa e poltrona" loading="lazy" decoding="async" /></div>
+          <div className="wrap">
+            <span className="eyebrow reveal">ARQX® Private Growth Network</span>
+            <h2 className="cta-h reveal" data-d="1">
+              Seu escritório já chegou até aqui.
+              <span className="q">A questão agora é: até onde ele consegue chegar com a <span className="serif">estrutura certa?</span></span>
             </h2>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "18px" }}>
-            {c.metodo.pilares.map((p, i) => (
-              <div key={p.nome} className="reveal">
-                <Card>
-                  <div style={{ fontFamily: "var(--font-structure)", color: "var(--text-accent)", fontSize: "14px", letterSpacing: ".08em", marginBottom: "14px" }}>
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <h3 style={{ fontSize: "var(--text-lg)", marginBottom: "10px" }}>{p.nome}</h3>
-                  <p style={{ fontSize: "14px", color: "var(--text-secondary)", lineHeight: 1.6 }}>{p.linha}</p>
-                </Card>
+            <div className="cta-foot">
+              <p className="reveal" data-d="1">Solicite uma análise para descobrir se o seu escritório possui o perfil para integrar a rede ARQX.</p>
+              <div className="reveal" data-d="2" style={{ display: "flex", flexDirection: "column", gap: 14, alignItems: "flex-start" }}>
+                <a href="#selecao" className="btn magnetic" data-modal-open>Solicitar associação <span className="ar">→</span></a>
+                <span className="hero-micro">Processo sujeito à análise de perfil.</span>
               </div>
-            ))}
+            </div>
           </div>
-          <div style={{ marginTop: "var(--space-10)" }}>
-            <Button href={c.metodo.cta.href} variant="ghost">{c.metodo.cta.label}</Button>
+        </section>
+      </main>
+
+      {/* FOOTER */}
+      <footer className="footer" id="contato" data-theme="light">
+        <div className="wrap">
+          <div className="foot-top">
+            <div className="foot-brand">
+              <div className="fb">arqx<sup>®</sup></div>
+              <div className="fbs">Growth Partner for Architecture Firms</div>
+            </div>
+            <div className="foot-col">
+              <h4>Navegação</h4>
+              <a href="#sobre">A ARQX</a><a href="#estrutura">Estrutura</a><a href="#selecao" data-modal-open>Associação</a><a href="#contato">Contato</a>
+            </div>
+            <div className="foot-col">
+              <h4>Rede</h4>
+              <a href="#rede">Rede ARQX</a>
+              <a href="https://www.instagram.com/arquiteturacomlucas/" target="_blank" rel="noopener noreferrer">Instagram</a>
+              <a href="/politica-de-privacidade">Política de Privacidade</a>
+              <a href="#selecao" data-modal-open>Solicitar análise</a>
+            </div>
+          </div>
+          <div className="foot-bottom">
+            <span>© 2026 arqx®. Todos os direitos reservados.</span>
+            <span className="em">More projects. Better business.</span>
+            <span>The business behind the architecture</span>
           </div>
         </div>
-      </section>
+      </footer>
 
-      {/* ── Dobra 6: PULL QUOTE ── */}
-      <section style={{ ...SECTION, background: "var(--bg-sunken)", borderTop: "1px solid var(--line-hairline)", borderBottom: "1px solid var(--line-hairline)", textAlign: "center" }}>
-        <div style={{ maxWidth: "880px", marginInline: "auto" }} className="reveal">
-          <PullQuote size="lg" cite={c.quote.cite} role={c.quote.role} style={{ display: "inline-block", textAlign: "left" }}>
-            &ldquo;{c.quote.texto}&rdquo;
-          </PullQuote>
-        </div>
-      </section>
-
-      {/* ── Dobra 7: PORTFÓLIO (teaser) ── */}
-      <section style={SECTION}>
-        <div style={INNER}>
-          <div className="reveal">
-            <Eyebrow>{c.portfolio.eyebrow}</Eyebrow>
-            <h2 className="arqx-display" style={{ fontSize: "clamp(32px,4.5vw,56px)", margin: "22px 0 8px" }}>
-              {c.portfolio.statement}
-            </h2>
-            <ConfirmTag style={{ marginLeft: 0 }}>{c.portfolio.confirm}</ConfirmTag>
+      {/* MODAL */}
+      <div className="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+        <div className="modal-bg" data-modal-close></div>
+        <div className="modal-panel">
+          <div className="modal-top">
+            <span className="eyebrow">Solicitação de análise</span>
+            <button className="modal-close" data-modal-close aria-label="Fechar">Fechar <span>×</span></button>
           </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "18px", marginTop: "var(--space-12)" }}>
-            {["projects-grid", "interior", "portrait"].map((img) => (
-              <div key={img} className="reveal">
-                <Card image={`/img/${img}.webp`} imageAlt="Imagem provisória de projeto · aguardando fotos reais da rede" interactive>
-                  <span className="arqx-label">Projeto da rede</span>
-                  <ConfirmTag>aguardando projeto real</ConfirmTag>
-                </Card>
+          <div className="m-form-wrap" id="formWrap">
+            <h3 id="modalTitle">Solicite a análise do seu <span className="serif">escritório.</span></h3>
+            <p className="m-sub">Preencha os campos abaixo. Novos escritórios são avaliados antes da entrada na rede ARQX.</p>
+            <div className="m-notice" id="revenueNotice">O perfil principal de associação da ARQX são escritórios acima de R$ 50 mil/mês. Você ainda pode enviar a solicitação: avaliaremos o seu contexto.</div>
+            <form id="applyForm" noValidate>
+              <div className="field half"><label htmlFor="fname">Nome</label><input type="text" id="fname" name="fname" autoComplete="given-name" required /><span className="err">Obrigatório</span></div>
+              <div className="field half"><label htmlFor="lname">Sobrenome</label><input type="text" id="lname" name="lname" autoComplete="family-name" required /><span className="err">Obrigatório</span></div>
+              <div className="field"><label htmlFor="office">Nome do escritório</label><input type="text" id="office" name="office" required /><span className="err">Obrigatório</span></div>
+              <div className="field"><label htmlFor="link">Instagram / Site</label><input type="text" id="link" name="link" placeholder="@seuescritorio" required /><span className="err">Obrigatório</span></div>
+              <div className="field half"><label htmlFor="city">Cidade</label><input type="text" id="city" name="city" autoComplete="address-level2" required /><span className="err">Obrigatório</span></div>
+              <div className="field half"><label htmlFor="whatsapp">WhatsApp</label><input type="tel" id="whatsapp" name="whatsapp" autoComplete="tel" placeholder="(00) 00000-0000" required /><span className="err">Obrigatório</span></div>
+              <div className="field"><label htmlFor="email">E-mail</label><input type="email" id="email" name="email" autoComplete="email" required /><span className="err">E-mail inválido</span></div>
+              <div className="field"><label htmlFor="revenue">Faixa de faturamento mensal</label>
+                <select id="revenue" name="revenue" required defaultValue="">
+                  <option value="" disabled>Selecione</option>
+                  <option value="R$ 30k a 50k">R$ 30k a 50k</option>
+                  <option value="R$ 50k a 100k">R$ 50k a 100k</option>
+                  <option value="R$ 100k a 200k">R$ 100k a 200k</option>
+                  <option value="R$ 200k a 500k">R$ 200k a 500k</option>
+                  <option value="R$ 500k+">R$ 500k+</option>
+                </select><span className="err">Selecione uma faixa</span>
               </div>
-            ))}
-          </div>
-          <div style={{ marginTop: "var(--space-10)" }}>
-            <Button href={c.portfolio.cta.href} variant="ghost">{c.portfolio.cta.label}</Button>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Dobra 8: RESULTADOS ── */}
-      <section style={{ ...SECTION, paddingTop: 0 }}>
-        <div style={INNER}>
-          <div className="reveal">
-            <Eyebrow>{c.resultados.eyebrow}</Eyebrow>
-          </div>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "18px", marginTop: "var(--space-8)" }}>
-            {c.resultados.cases.map((r) => (
-              <div key={r.valor} className="reveal">
-                <Card>
-                  <div style={{ fontFamily: "var(--font-structure)", fontSize: "clamp(30px,3.6vw,44px)", letterSpacing: "-.02em" }}>{r.valor}</div>
-                  <div style={{ color: "var(--text-muted)", fontSize: "13px", marginTop: "8px" }}>{r.prazo}</div>
-                </Card>
+              <div className="field"><label htmlFor="bottleneck">Qual é hoje o principal gargalo de crescimento do seu escritório?</label><textarea id="bottleneck" name="bottleneck" required></textarea><span className="err">Obrigatório</span></div>
+              <div style={{ position: "absolute", left: "-9999px" }} aria-hidden="true">
+                <label>Website<input type="text" name="website" tabIndex={-1} autoComplete="off" /></label>
               </div>
-            ))}
+              <label className="field-check" id="lgpdField">
+                <input type="checkbox" id="lgpd" name="lgpd" required />
+                <span>Li e aceito a <a href="/politica-de-privacidade" target="_blank">Política de Privacidade</a>. Autorizo o uso dos meus dados para contato comercial.</span>
+              </label>
+              <div className="m-error" id="formError"></div>
+              <button type="submit" className="btn magnetic" id="submitBtn">Enviar solicitação <span className="ar">→</span></button>
+              <p className="m-fine">ARQX® · Processo sujeito à análise de perfil</p>
+            </form>
           </div>
-          <p style={{ color: "var(--text-muted)", fontSize: "12px", marginTop: "var(--space-6)" }}>{c.resultados.disclaimer}</p>
+          <div className="m-success" id="successMsg">
+            <div className="sc">Solicitação recebida.</div>
+            <p>Obrigado. Sua solicitação de análise foi registrada. Nossa equipe avaliará o perfil do seu escritório e, havendo compatibilidade com a rede, entraremos em contato para a próxima etapa.</p>
+            <button className="btn magnetic" data-modal-close style={{ marginTop: 34 }}>Fechar <span className="ar">→</span></button>
+          </div>
         </div>
-      </section>
+      </div>
 
-      {/* ── Dobra 9: CTA FINAL ── */}
-      <section style={{ ...SECTION, background: "var(--bg-sunken)", borderTop: "1px solid var(--line-hairline)", textAlign: "center" }}>
-        <div style={{ maxWidth: "760px", marginInline: "auto" }} className="reveal">
-          <p className="arqx-display" style={{ fontSize: "clamp(30px,4.5vw,52px)", marginBottom: "var(--space-10)" }}>
-            {c.ctaFinal.statement}
-          </p>
-          <Button href={c.ctaFinal.cta.href} size="lg" variant="primary">{c.ctaFinal.cta.label}</Button>
-        </div>
-      </section>
-    </>
+      <HomeV2Fx />
+    </div>
   );
 }

@@ -1,8 +1,4 @@
 import "./globals.css";
-import Header from "@/components/chrome/Header";
-import Footer from "@/components/chrome/Footer";
-import MobileNav from "@/components/chrome/MobileNav";
-import Reveal from "@/components/Reveal";
 import ReviewWidget from "@/components/review/ReviewWidget";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
 import { SITEWIDE_GRAPH, JsonLd } from "@/lib/schema";
@@ -30,17 +26,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="pt-BR">
       <head>
-        {/* Preload das fontes críticas (spec §4.1): Berling (hero) + Inter 400 (corpo) */}
         <link rel="preload" href="/fonts/berling-italic.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
-        <link rel="preload" href="/fonts/inter-400.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
       </head>
       <body>
         <JsonLd data={SITEWIDE_GRAPH} />
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <MobileNav />
-        <Reveal />
+        {children}
         <ReviewWidget />
       </body>
     </html>
