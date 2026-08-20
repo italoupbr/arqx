@@ -1,4 +1,5 @@
 import "./globals.css";
+import "./home-v2.css";
 import ReviewWidget from "@/components/review/ReviewWidget";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/site";
 import { SITEWIDE_GRAPH, JsonLd } from "@/lib/schema";
@@ -6,7 +7,7 @@ import { SITEWIDE_GRAPH, JsonLd } from "@/lib/schema";
 export const metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "ARQX · A primeira rede de escritórios de arquitetura do Brasil",
+    default: "ARQX® · The business behind the architecture",
     template: "%s | ARQX",
   },
   description: SITE_DESCRIPTION,

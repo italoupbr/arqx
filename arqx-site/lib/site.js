@@ -4,7 +4,7 @@
 export const SITE_URL = "https://arqx-br.com.br";
 export const SITE_NAME = "ARQX";
 export const SITE_DESCRIPTION =
-  "ARQX é a primeira rede de escritórios de arquitetura do Brasil, fundada por Lucas Galy.";
+  "ARQX é uma Growth Partner para escritórios de arquitetura estabelecidos. Rede de escritórios do Brasil fundada por Lucas Galy.";
 
 export const CONTACTS = {
   email: "lucasgaly@arqx.com.br", // [CONFIRMAR se haverá contato@arqx.com.br]

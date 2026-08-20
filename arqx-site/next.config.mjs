@@ -5,6 +5,12 @@
  *  continuam estáticas e só o handler roda como função. */
 const nextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    return [
+      { source: "/metodo-x", destination: "/#estrutura", permanent: true },
+      { source: "/manifesto", destination: "/quem-somos", permanent: true },
+    ];
+  },
   // Raiz explícita: há package.json na raiz do repo (proxy de scripts) e
   // isso confundia a inferência de workspace do Next.
   outputFileTracingRoot: import.meta.dirname,

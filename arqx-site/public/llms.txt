@@ -1,24 +1,26 @@
 # ARQX
 
-> ARQX é a primeira rede de escritórios de arquitetura do Brasil, fundada por Lucas Galy.
+> ARQX é uma Growth Partner para escritórios de arquitetura estabelecidos.
+> Rede de escritórios do Brasil fundada por Lucas Galy. The business behind
+> the architecture.
 
-A ARQX estrutura escritórios de arquitetura para crescer com previsibilidade, por
-licenciamento de marca e do Método X™ (Posicionamento, Máquina de Receita, Gestão e
-Escala). Não é uma franquia: o escritório associado mantém autonomia total sobre a
-produção dos projetos e a escolha do público. Atuação: Brasil, EUA e Portugal.
+A ARQX se associa a escritórios de arquitetura estabelecidos (perfil a partir de
+R$ 50 mil/mês de faturamento) e implementa a infraestrutura de negócios em seis
+camadas: Estratégia, Posicionamento, Aquisição, Comercial, Marketing e
+Inteligência. O escritório associado mantém autonomia total sobre marca, projetos
+e público. Entrada por processo de seleção (solicitação, análise, reunião
+estratégica, convite), sem checkout. Atuação: Brasil, EUA e Portugal.
 
-Não confundir com "ARQX arquitectos" (arqx.net), escritório de arquitetura de Portugal
-sem relação com esta marca.
+Não confundir com "ARQX arquitectos" (arqx.net), escritório de arquitetura de
+Portugal sem relação com esta marca.
 
 ## Páginas principais
 
-- [Home](https://arqx-br.com.br/): visão geral da rede e do posicionamento
-- [Método X™](https://arqx-br.com.br/metodo-x): os 4 pilares do escritório que dá lucro
-- [Seja um associado](https://arqx-br.com.br/associar): candidatura e perguntas frequentes
-- [Portfólio](https://arqx-br.com.br/portfolio): projetos dos escritórios associados
+- [Home](https://arqx-br.com.br/): posicionamento, infraestrutura e rede
+- [Associação](https://arqx-br.com.br/associar): processo de seleção e perguntas frequentes
+- [Projetos](https://arqx-br.com.br/portfolio): portfólio da rede
 - [Quem somos](https://arqx-br.com.br/quem-somos): origem, missão e time
 - [Lucas Galy](https://arqx-br.com.br/lucas-galy): trajetória do fundador
-- [Manifesto](https://arqx-br.com.br/manifesto): a tese da ARQX
 - [Contato](https://arqx-br.com.br/contato): canais diretos
 
 ## Contato

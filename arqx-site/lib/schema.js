@@ -17,7 +17,7 @@ export const SITEWIDE_GRAPH = {
       name: "ARQX",
       alternateName: "arqx",
       description:
-        "A primeira rede de escritórios de arquitetura do Brasil. Estruturação comercial e crescimento para escritórios de arquitetura por licenciamento de marca e do Método X™. Fundada por Lucas Galy.",
+        "Growth Partner para escritórios de arquitetura estabelecidos. Rede de escritórios do Brasil fundada por Lucas Galy: estratégia, posicionamento, aquisição, comercial e inteligência num único sistema de crescimento. The business behind the architecture.",
       url: `${SITE_URL}/`,
       logo: `${SITE_URL}/og/logo.png`,
       foundingLocation: { "@type": "Country", name: "Brasil" },

@@ -15,12 +15,10 @@ const ENABLED = process.env.NEXT_PUBLIC_REVIEW_WIDGET !== "false" && SB_URL && S
 
 const PAGES = [
   ["home", "Home", "/"],
-  ["metodo-x", "Método X™", "/metodo-x"],
-  ["associar", "Seja um associado", "/associar"],
-  ["portfolio", "Portfólio", "/portfolio"],
+  ["associar", "Associação", "/associar"],
+  ["portfolio", "Projetos", "/portfolio"],
   ["quem-somos", "Quem somos", "/quem-somos"],
   ["lucas-galy", "Lucas Galy", "/lucas-galy"],
-  ["manifesto", "Manifesto", "/manifesto"],
   ["contato", "Contato", "/contato"],
   ["politica-de-privacidade", "Política de Privacidade", "/politica-de-privacidade"],
 ];
