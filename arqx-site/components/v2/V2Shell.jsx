@@ -3,15 +3,41 @@
    os comportamentos (cursor, reveals, modal, form) vivem em V2Fx. */
 import V2Fx from "@/components/v2/V2Fx";
 
+/* Navegação · máx. 5 itens + CTA (regra do operador). "A ARQX" agrupa as
+   âncoras institucionais num dropdown; Associação tem página E CTA. */
+const DROP = [
+  ["/#sobre", "O que é a ARQX"],
+  ["/#estrutura", "A Estrutura"],
+  ["/#rede", "A Rede"],
+  ["/quem-somos", "Quem Somos"],
+];
 const NAV = [
+  ["/portfolio", "Projetos"],
+  ["/blog", "Blog"],
+  ["/associar", "Associação"],
+  ["/contato", "Contato"],
+];
+const SHEET = [
+  ["/", "Início"],
   ["/#sobre", "A ARQX"],
   ["/#estrutura", "Estrutura"],
   ["/portfolio", "Projetos"],
+  ["/blog", "Blog"],
   ["/quem-somos", "Quem Somos"],
+  ["/associar", "Associação"],
   ["/contato", "Contato"],
 ];
 
+const TabIcon = {
+  inicio: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" width="20" height="20" aria-hidden="true"><path d="M3 11l9-8 9 8" /><path d="M5 10v10h14V10" /></svg>,
+  projetos: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" width="20" height="20" aria-hidden="true"><rect x="3" y="3" width="7.5" height="7.5" rx="1" /><rect x="13.5" y="3" width="7.5" height="7.5" rx="1" /><rect x="3" y="13.5" width="7.5" height="7.5" rx="1" /><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1" /></svg>,
+  associar: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" width="18" height="18" aria-hidden="true"><path d="M12 4v16M4 12h16" /></svg>,
+  blog: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" width="20" height="20" aria-hidden="true"><path d="M5 4h14v16H5z" /><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4.5" /></svg>,
+  menu: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" width="20" height="20" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" /></svg>,
+};
+
 export default function V2Shell({ children, active = "" }) {
+  const dropActive = DROP.some(([h]) => h === active);
   return (
     <div className="v2" id="v2root">
       <a className="skip" href="#conteudo">Ir para o conteúdo</a>
@@ -24,6 +50,16 @@ export default function V2Shell({ children, active = "" }) {
         <div className="nav-inner">
           <a className="brand magnetic" href="/" aria-label="ARQX · início">arqx<sup>®</sup></a>
           <nav className="nav-links" aria-label="Principal">
+            <div className={`nav-drop${dropActive ? " active-parent" : ""}`} id="navDrop">
+              <button type="button" className={`nav-drop-btn${dropActive ? " active" : ""}`} aria-expanded="false" aria-controls="navDropPanel" data-drop-toggle>
+                A ARQX <span className="dd-car" aria-hidden="true">▾</span>
+              </button>
+              <div className="nav-drop-panel" id="navDropPanel" role="menu">
+                {DROP.map(([href, label]) => (
+                  <a key={href} href={href} role="menuitem" className={active === href ? "active" : undefined}>{label}</a>
+                ))}
+              </div>
+            </div>
             {NAV.map(([href, label]) => (
               <a key={href} href={href} className={active === href ? "active" : undefined} aria-current={active === href ? "page" : undefined}>
                 {label}
@@ -32,16 +68,35 @@ export default function V2Shell({ children, active = "" }) {
           </nav>
           <div className="nav-right">
             <a href="/associar" className="nav-cta" data-modal-open>Solicitar associação <span className="ar">→</span></a>
-            <button className="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu"><span></span><span></span></button>
+            <button className="burger" id="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileMenu" data-menu-toggle><span></span><span></span></button>
           </div>
         </div>
       </header>
 
-      <nav className="mobile-menu" id="mobileMenu" aria-label="Menu móvel">
-        {NAV.map(([href, label], i) => (
+      <nav className="mobile-menu" id="mobileMenu" aria-label="Menu completo">
+        {SHEET.map(([href, label], i) => (
           <a key={href} href={href}><span className="n">{String(i + 1).padStart(2, "0")}</span> {label}</a>
         ))}
         <div className="mm-foot"><a href="/associar" className="mm-cta" data-modal-open>Solicitar associação <span>→</span></a></div>
+      </nav>
+
+      {/* Tab bar inferior · mobile (<860px). 5 abas, CTA elevado no centro. */}
+      <nav className="tabbar" aria-label="Navegação inferior">
+        <a href="/" className={`tab${active === "/" ? " on" : ""}`} aria-current={active === "/" ? "page" : undefined}>
+          {TabIcon.inicio}<span>Início</span>
+        </a>
+        <a href="/portfolio" className={`tab${active === "/portfolio" ? " on" : ""}`} aria-current={active === "/portfolio" ? "page" : undefined}>
+          {TabIcon.projetos}<span>Projetos</span>
+        </a>
+        <a href="/associar" className={`tab tab-cta${active === "/associar" ? " on" : ""}`} aria-current={active === "/associar" ? "page" : undefined}>
+          <span className="tc-disc">{TabIcon.associar}</span><span>Associar</span>
+        </a>
+        <a href="/blog" className={`tab${active === "/blog" ? " on" : ""}`} aria-current={active === "/blog" ? "page" : undefined}>
+          {TabIcon.blog}<span>Blog</span>
+        </a>
+        <button type="button" className="tab" aria-label="Abrir menu completo" aria-controls="mobileMenu" data-menu-toggle>
+          {TabIcon.menu}<span>Menu</span>
+        </button>
       </nav>
 
       <div id="conteudo">{children}</div>
@@ -55,7 +110,11 @@ export default function V2Shell({ children, active = "" }) {
             </div>
             <div className="foot-col">
               <h4>Navegação</h4>
-              {NAV.map(([href, label]) => (<a key={href} href={href}>{label}</a>))}
+              <a href="/#sobre">A ARQX</a>
+              <a href="/portfolio">Projetos</a>
+              <a href="/blog">Blog</a>
+              <a href="/quem-somos">Quem Somos</a>
+              <a href="/contato">Contato</a>
             </div>
             <div className="foot-col">
               <h4>Rede</h4>

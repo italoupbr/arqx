@@ -167,14 +167,27 @@ export default function HomeV2Fx() {
       });
     });
 
-    /* MENU */
+    /* MENU · qualquer [data-menu-toggle] abre/fecha o sheet */
     const burger = document.getElementById("burger");
-    on(burger, "click", () => {
-      const open = root.classList.toggle("menu-open");
-      burger.setAttribute("aria-expanded", open ? "true" : "false");
-      burger.setAttribute("aria-label", open ? "Fechar menu" : "Abrir menu");
-    });
-    root.querySelectorAll(".mobile-menu a").forEach((a) => on(a, "click", () => { root.classList.remove("menu-open"); burger.setAttribute("aria-expanded", "false"); }));
+    const menuToggles = [...root.querySelectorAll("[data-menu-toggle]")];
+    const setMenu = (open) => {
+      root.classList.toggle("menu-open", open);
+      menuToggles.forEach((b) => b.setAttribute("aria-expanded", open ? "true" : "false"));
+    };
+    menuToggles.forEach((b) => on(b, "click", () => setMenu(!root.classList.contains("menu-open"))));
+    root.querySelectorAll(".mobile-menu a").forEach((a) => on(a, "click", () => setMenu(false)));
+
+    /* DROPDOWN "A ARQX" · clique/toque + fecha fora e no Escape */
+    const drop = document.getElementById("navDrop");
+    if (drop) {
+      const btn = drop.querySelector("[data-drop-toggle]");
+      const setDrop = (open) => { drop.classList.toggle("open", open); btn.setAttribute("aria-expanded", open ? "true" : "false"); };
+      on(btn, "click", (e) => { e.stopPropagation(); setDrop(!drop.classList.contains("open")); });
+      on(drop, "mouseenter", () => { if (!isTouch) setDrop(true); });
+      on(drop, "mouseleave", () => { if (!isTouch) setDrop(false); });
+      on(document, "click", (e) => { if (!drop.contains(e.target)) setDrop(false); });
+      drop.querySelectorAll("a").forEach((a) => on(a, "click", () => setDrop(false)));
+    }
 
     /* MODAL */
     const modal = document.getElementById("modal");
@@ -199,7 +212,8 @@ export default function HomeV2Fx() {
     on(document, "keydown", (e) => {
       if (e.key === "Escape") {
         if (modal.classList.contains("open")) closeModal();
-        if (root.classList.contains("menu-open")) { root.classList.remove("menu-open"); burger.setAttribute("aria-expanded", "false"); }
+        if (root.classList.contains("menu-open")) setMenu(false);
+        document.getElementById("navDrop")?.classList.remove("open");
       }
       if (e.key === "Tab" && modal.classList.contains("open")) {
         const f = [...modal.querySelectorAll('a[href],button:not([disabled]),input,select,textarea')].filter((x) => x.offsetParent !== null);
